@@ -2,6 +2,7 @@
 using ASP_Hw3.Models;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ASP_Hw3.Repository
@@ -21,9 +22,9 @@ namespace ASP_Hw3.Repository
             await _dbContext.SaveChangesAsync();
         }
 
-        public async Task Delete(int id)
+        public async Task Delete(Student student)
         {
-            var data = _dbContext.Students.FirstOrDefaultAsync(c => c.Id == id);
+            var data = _dbContext.Students.SingleOrDefault(c => c.Id == student.Id);
             _dbContext.Entry(data).State = EntityState.Detached;
             await _dbContext.SaveChangesAsync();
         }
@@ -39,9 +40,9 @@ namespace ASP_Hw3.Repository
                 .FirstOrDefaultAsync(c => c.Id == id); ;
         }
 
-        public async Task Update(int id)
+        public async Task Update(Student student)
         {
-            var data = _dbContext.Students.FirstOrDefaultAsync(c => c.Id == id);
+            var data = _dbContext.Students.SingleOrDefault(c => c.Id == student.Id);
             _dbContext.Entry(data).State |= EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }

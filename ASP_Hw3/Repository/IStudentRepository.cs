@@ -8,8 +8,8 @@ namespace ASP_Hw3.Repository
 	{
 		Task<List<Student>> GetAllAsync();
         Task Add(Student student);
-		Task Delete(int id);
-		Task Update(int id);
+		Task Delete(Student student);
+		Task Update(Student student);
 		Task<Student> GetByIdAsync(int id);
 	}
 }

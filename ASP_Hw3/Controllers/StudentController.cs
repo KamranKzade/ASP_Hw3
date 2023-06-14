@@ -50,25 +50,38 @@ namespace ASP_Hw3.Controllers
             return View();
         }
 
-        // POST: StudentController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        [HttpGet]
+        public async Task<IActionResult> Update(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var item = await _studentService.GetByIdAsync(id);
+            
+            return View(item);
         }
 
-        // GET: StudentController/Edit/5
-        public ActionResult Edit(int id)
+
+        [HttpPost]
+        public async Task<IActionResult> Update(Student model)
         {
-            return View(_studentService.Update(id));
+            if (ModelState.IsValid)
+            {
+                foreach (var element in await _studentService.GetAllByKey())
+                {
+                    if (element.Id == model.Id)
+                    {
+                        element.FirstName = model.FirstName;
+                        element.LastName = model.LastName;
+                        element.Email = model.Email;
+                        element.Birthdate = model.Birthdate;
+                        break;
+                    }
+                }
+                _studentService.Update(model);
+                return RedirectToAction("index");
+            }
+            else
+            {
+                return View(model);
+            }
         }
 
         // POST: StudentController/Edit/5
