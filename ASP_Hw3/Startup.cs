@@ -59,7 +59,7 @@ namespace ASP_Hw3
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Student}/{action=Index}/{id?}");
+					pattern: "{controller=Home}/{action=Index}/{id?}");
 			});
 		}
 	}

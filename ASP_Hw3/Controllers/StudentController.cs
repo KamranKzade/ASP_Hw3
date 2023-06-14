@@ -22,9 +22,9 @@ namespace ASP_Hw3.Controllers
         }
 
         // GET: StudentController/Details/5
-        public ActionResult Details(int id)
+        public async Task<ActionResult> Details(int id)
         {
-            var data = _studentService.GetByIdAsync(id);
+            var data = await _studentService.GetByIdAsync(id);
             return View(data);
         }
 
@@ -91,6 +91,7 @@ namespace ASP_Hw3.Controllers
             return View(item);
         }
 
+        // Post
         public async Task<ActionResult> DeleteItem(int id)
         {
             var item = await _studentService.GetByIdAsync(id);
@@ -98,19 +99,5 @@ namespace ASP_Hw3.Controllers
             return RedirectToAction("index");
         }
 
-        // POST: StudentController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
