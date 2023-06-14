@@ -25,7 +25,7 @@ namespace ASP_Hw3.Repository
         public async Task Delete(Student student)
         {
             var data = _dbContext.Students.SingleOrDefault(c => c.Id == student.Id);
-            _dbContext.Entry(data).State = EntityState.Detached;
+            _dbContext.Entry(data).State = EntityState.Deleted;
             await _dbContext.SaveChangesAsync();
         }
 

@@ -22,7 +22,7 @@ namespace ASP_Hw3.Controllers
         }
 
         // GET: StudentController/Details/5
-        public  ActionResult Details(int id)
+        public ActionResult Details(int id)
         {
             var data = _studentService.GetByIdAsync(id);
             return View(data);
@@ -30,11 +30,11 @@ namespace ASP_Hw3.Controllers
 
 
         [HttpPost]
-        public IActionResult Add(Student model)
+        public async Task<IActionResult> Add(Student model)
         {
             if (ModelState.IsValid)
             {
-                _studentService.Add(model);
+                await _studentService.Add(model);
                 return RedirectToAction("index");
             }
             else
@@ -54,7 +54,7 @@ namespace ASP_Hw3.Controllers
         public async Task<IActionResult> Update(int id)
         {
             var item = await _studentService.GetByIdAsync(id);
-            
+
             return View(item);
         }
 
@@ -83,26 +83,19 @@ namespace ASP_Hw3.Controllers
                 return View(model);
             }
         }
-
-        // POST: StudentController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        // GET: StudentController/Delete/5
+        public async Task<ActionResult> Delete(int id)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            var item = await _studentService.GetByIdAsync(id);
+            _studentService.Delete(item);
+            return View(item);
         }
 
-        // GET: StudentController/Delete/5
-        public ActionResult Delete(int id)
+        public async Task<ActionResult> DeleteItem(int id)
         {
-            return View(_studentService.GetByIdAsync(id));
+            var item = await _studentService.GetByIdAsync(id);
+            _studentService.Delete(item);
+            return RedirectToAction("index");
         }
 
         // POST: StudentController/Delete/5
