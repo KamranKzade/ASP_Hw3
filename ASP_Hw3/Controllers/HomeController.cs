@@ -12,9 +12,5 @@ namespace ASP_Hw3.Controllers
 			return View();
 		}
 
-		public IActionResult Privacy()
-		{
-			return View();
-		}
 	}
 }

@@ -34,7 +34,6 @@ namespace ASP_Hw3.Services
 			await _studentRepository.Delete(student);
 		}
 
-
 		public async Task<Student> GetByIdAsync(int id)
 		{
 			return await _studentRepository.GetByIdAsync(id); ;
@@ -42,7 +41,6 @@ namespace ASP_Hw3.Services
 
 		public async Task Update(Student student)
 		{
-			
 			await _studentRepository.Update(student);
 		}
 	}

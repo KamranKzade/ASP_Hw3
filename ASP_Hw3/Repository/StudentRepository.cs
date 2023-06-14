@@ -43,7 +43,7 @@ namespace ASP_Hw3.Repository
         public async Task Update(Student student)
         {
             var data = _dbContext.Students.SingleOrDefault(c => c.Id == student.Id);
-            _dbContext.Entry(data).State |= EntityState.Modified;
+            _dbContext.Entry(data).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
         }
     }

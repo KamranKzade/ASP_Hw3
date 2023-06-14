@@ -7,26 +7,18 @@ namespace ASP_Hw3.Entities
 	public class Student
 	{
 		public int Id { get; set; }
-		[DisplayName("Name")]
-		[Required]
+
+		[DisplayName("Name")][Required]
 		public string FirstName { get; set; }
-        [DisplayName("Surname")]
-        [Required]
+        
+		[DisplayName("Surname")][Required]
         public string LastName { get; set; }
-        [DisplayName("Mail")]
-        [Required]
+        
+		[DisplayName("Mail")][Required]
         public string Email { get; set; }
-        [DisplayName("BirthDay")]
+        
+		[DisplayName("BirthDay")]
         [Required]
         public DateTime Birthdate { get; set; }
-
-
-		public int GetAge()
-		{
-			if (DateTime.Now.Month - Birthdate.Month >= 0)
-				return DateTime.Now.Year - Birthdate.Year;
-			else
-				return DateTime.Now.Year - Birthdate.Year - 1;
-		}
 	}
 }

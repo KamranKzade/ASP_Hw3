@@ -1,8 +1,8 @@
-﻿using ASP_Hw3.Entities;
-using ASP_Hw3.Services;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using ASP_Hw3.Services;
+using ASP_Hw3.Entities;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
 
 namespace ASP_Hw3.Controllers
 {
