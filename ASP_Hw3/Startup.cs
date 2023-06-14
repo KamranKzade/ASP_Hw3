@@ -1,5 +1,6 @@
 using ASP_Hw3.Models;
 using ASP_Hw3.Repository;
+using ASP_Hw3.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -23,6 +24,7 @@ namespace ASP_Hw3
 		{
 			services.AddControllersWithViews();
 
+			services.AddScoped<IStudentServices, StudentServices>();
 			services.AddScoped<IStudentRepository, StudentRepository>();
 
 			var conn = Configuration.GetConnectionString("myConn");
@@ -57,7 +59,7 @@ namespace ASP_Hw3
 			{
 				endpoints.MapControllerRoute(
 					name: "default",
-					pattern: "{controller=Home}/{action=Index}/{id?}");
+					pattern: "{controller=Student}/{action=Index}/{id?}");
 			});
 		}
 	}

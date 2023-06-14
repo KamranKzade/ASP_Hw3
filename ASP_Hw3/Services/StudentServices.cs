@@ -8,39 +8,41 @@ namespace ASP_Hw3.Services
 {
 	public class StudentServices : IStudentServices
 	{
-		public readonly IStudentRepository _studentRepo;
+        private readonly IStudentRepository _studentRepository;
 
-		public StudentServices(IStudentRepository studentRepo)
+        public StudentServices(IStudentRepository studentRepository)
+        {
+            _studentRepository = studentRepository;
+        }
+
+        public async Task<List<Student>> GetAllByKey(string key = "")
+        {
+            var data = await _studentRepository.GetAllAsync();
+
+            return key != "" ? data.Where(s =>
+            s.FirstName.ToLower().Contains(key.ToLower())).ToList()
+            : data;
+        }
+
+        public async Task Add(Student student)
 		{
-			_studentRepo = studentRepo;
+			await _studentRepository.Add(student);
 		}
 
-		public async Task Add(Student student)
+		public async Task Delete(int id)
 		{
-			await _studentRepo.Add(student);
+			await _studentRepository.Delete(id);
 		}
 
-		public async Task Delete(Student student)
-		{
-			await _studentRepo.Delete(student);
-		}
-
-		public async Task<List<Student>> GetAllKey(string key = "")
-		{
-			var data = await _studentRepo.GellAllAsync();
-
-			return key != "" ? data.Where(s =>
-			s.FirstName.ToLower().Contains(key.ToLower())).ToList() : data;
-		}
 
 		public async Task<Student> GetByIdAsync(int id)
 		{
-			return await _studentRepo.GetByIdAsync(id); ;
+			return await _studentRepository.GetByIdAsync(id); ;
 		}
 
-		public async Task Update(Student student)
+		public async Task Update(int id)
 		{
-			await _studentRepo.Update(student);
+			await _studentRepository.Update(id);
 		}
 	}
 }

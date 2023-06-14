@@ -6,10 +6,10 @@ namespace ASP_Hw3.Repository
 {
 	public interface IStudentRepository
 	{
-		Task<List<Student>> GellAllAsync();
-		Task Add(Student student);
-		Task Delete(Student student);
-		Task Update(Student student);
+		Task<List<Student>> GetAllAsync();
+        Task Add(Student student);
+		Task Delete(int id);
+		Task Update(int id);
 		Task<Student> GetByIdAsync(int id);
 	}
 }

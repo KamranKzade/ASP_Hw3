@@ -6,10 +6,10 @@ namespace ASP_Hw3.Services
 {
 	public interface IStudentServices
 	{
-		Task<List<Student>> GetAllKey(string key = "");
+		Task<List<Student>> GetAllByKey(string key = "");
 		Task Add(Student student);
-		Task Delete(Student student);
-		Task Update(Student student);
+		Task Delete(int id);
+		Task Update(int id);
 		Task<Student> GetByIdAsync(int id);
 	}
 }
