@@ -15,19 +15,17 @@ namespace ASP_Hw3.Controllers
             _studentService = studentService;
         }
 
-        // GET: StudentController
         public async Task<IActionResult> Index(string key = "")
         {
             return View(await _studentService.GetAllByKey(key));
         }
 
-        // GET: StudentController/Details/5
-        public async Task<ActionResult> Details(int id)
-        {
-            var data = await _studentService.GetByIdAsync(id);
-            return View(data);
-        }
 
+        // GET: StudentController/Create
+        public ActionResult Create()
+        {
+            return View();
+        }
 
         [HttpPost]
         public async Task<IActionResult> Add(Student model)
@@ -44,12 +42,7 @@ namespace ASP_Hw3.Controllers
         }
 
 
-        // GET: StudentController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
+        // Get : StudentController/Update
         [HttpGet]
         public async Task<IActionResult> Update(int id)
         {
@@ -57,7 +50,6 @@ namespace ASP_Hw3.Controllers
 
             return View(item);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Update(Student model)
@@ -83,6 +75,8 @@ namespace ASP_Hw3.Controllers
                 return View(model);
             }
         }
+
+       
         // GET: StudentController/Delete/5
         public async Task<ActionResult> Delete(int id)
         {
@@ -99,5 +93,12 @@ namespace ASP_Hw3.Controllers
             return RedirectToAction("index");
         }
 
+
+        // GET: StudentController/Details/5
+        public async Task<ActionResult> Details(int id)
+        {
+            var data = await _studentService.GetByIdAsync(id);
+            return View(data);
+        }
     }
 }
